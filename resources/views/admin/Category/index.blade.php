@@ -53,7 +53,7 @@
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-edit"></i>courses table
+                        <i class="fa fa-edit"></i>categories table
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="btn-group">
-                                    <a id="" class="btn green" href="{{route('course.create')}}" >
+                                    <a id="" class="btn green" href="{{route('Category.create')}}" >
                                         Add New <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -83,14 +83,12 @@
                         <thead>
                         <tr>
                             <th>
-                                Number course
+                                Number
                             </th>
                             <th>
-                                Name Course
+                                Name category
                             </th>
-                            <th>
-                                Teacher Course
-                            </th>
+
                             <th>
                                 Description
                             </th>
@@ -104,21 +102,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($courses as $course)
+                        @foreach($categories as $category)
                         <tr>
                             <td>
-                                {{$course->number_course}}
+                                {{$category->number_category}}
                             </td>
                             <td>
-                                {{$course->name}}
+                                {{$category->name}}
+                            </td>
+
+                            <td>
+                                {{$category->description}}
                             </td>
                             <td>
-                            </td>
-                            <td>
-                                {{$course->description}}
-                            </td>
-                            <td>
-                                <a class="" href="{{route( 'course.edit',['course'=>$course])}}">
+                                <a class="" href="{{route( 'Category.edit',['Category'=>$category])}}">
                                     Edit </a>
                             </td>
                             <td>

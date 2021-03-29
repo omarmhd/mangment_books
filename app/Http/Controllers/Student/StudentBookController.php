@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,8 +18,21 @@ class StudentBookController extends Controller
     public function index()
     {
             $user=User::find(auth()->user()->id);
-              $courses =$user->courses;
-            return view('student.index',compact('courses'));
+        $categories =$user->categories;
+        $requests=\App\Models\Request::where('user_id',auth()->user()->id)->get();
+
+        $requests_to_check=$requests->toArray();
+            return view('student.index',compact('categories','requests','requests_to_check'));
+
+
+
+
+    }
+    public function library()
+    {
+        $categories =Category::all();
+
+        return view('library.index',compact('categories'));
 
 
 

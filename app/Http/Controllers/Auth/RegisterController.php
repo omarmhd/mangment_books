@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\FileService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Ramsey\Collection\DoubleEndedQueue;
 
 class RegisterController extends Controller
 {
@@ -67,11 +69,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $file_service=new FileService();
+
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'image' =>$data['image'],
+            'image' =>$file_service->upload($data['image'], 'files'),
             'role' =>$data['role'],
             'phone'=>$data['phone'],
             'status'=>'0'

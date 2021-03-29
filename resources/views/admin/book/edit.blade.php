@@ -193,11 +193,11 @@
                             <div class="form-group form-md-line-input has-info">
                                 <select class="form-control" id="form_control_1" name="course_id" >
                                     <option value=""   disabled="disabled">Choose Course</option>
-                                    @foreach($courses as $course)
-                                        <option {{$book->course->id==$course->id?'selected':''}} value="{{$course->id}}">{{$course->name}}</option>
+                                    @foreach($categories as $category)
+                                        <option {{$book->category->id==$category->id?'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
-                                <label for="form_control_1">Course </label>
+                                <label for="form_control_1">Category </label>
                             </div>
 
                             <div class="form-group form-md-line-input has-info"   >
@@ -205,7 +205,7 @@
                                 <label for="form_control_1">Cover book</label>
 
                             </div>
-                            <div class="form-group form-md-line-input has-info" id="Upload" style="display:none">
+                            <div class="form-group form-md-line-input has-info" id="Upload">
                                 <input type="file" class="form-control book" name="file"   >
                                 <label for="form_control_1">Upload book</label>
 
@@ -228,7 +228,6 @@
             $(".md-radiobtn").change(function (){
                 if($(this).val()=="Electronic")
                 {
-                    $("#Upload").show();
                     $(".delivery_date").hide();
                     $('.book').attr('required','true');
 
@@ -236,7 +235,6 @@
                 else
                 {
                     $(".delivery_date").show();
-                    $("#Upload").hide();
 
                 }
 

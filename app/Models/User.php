@@ -17,9 +17,7 @@ class User extends Authenticatable
      * @var array
      */
 
-    protected $guarded = [''
-
-    ];
+    protected $guarded = [''];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -40,19 +38,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function courses(){
-        return $this->belongsToMany(  Course::class  );
+    public function categories(){
+        return $this->belongsToMany(Category::class  );
+    }
+
+    public function books(){
+        return $this->belongsToMany(Book::class  );
     }
     public function redirectTo(){
 
-        return route('course.index');
+        return route('Category.index');
     }
     public function logout(Request $request){
-
-        return route('course.index');
+             return route('Category.index');
     }
-
-
-
 
 }

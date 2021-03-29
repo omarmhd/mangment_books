@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createBookRequest;
+use App\Http\Requests\CreateReservationRequest;
 use App\Models\Book;
+use App\Models\Category;
 use App\Models\Course;
+use App\Models\User;
 use App\Services\FileService;
 use Illuminate\Http\Request;
 
@@ -30,9 +33,9 @@ class BookController extends Controller
      */
     public function create()
     {
-       $courses=Course::all();
+       $categories=Category::all();
 
-        return view('admin.book.create',compact('courses'));
+        return view('admin.book.create',compact('categories'));
 
     }
 
@@ -62,15 +65,33 @@ class BookController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Book $book)
+    public function addReservedBook(CreateReservationRequest $request){
+
+        $input=$request->except('_method','_token');
+       $user= User::find($input['user_id']);
+       $user->books()->attach(Book::find($input['book_id']));
+
+
+
+    }
+
+    public function updateReservedBook(CreateReservationRequest $request){
+
+        $input=$request->except('_method','_token');
+        $user= User::find($input['user_id']);
+        $user->books()->sync(Book::find($input['book_id']));
+
+
+
+    }
+    public function addReservedBookPage()
     {
-        //
+
+        $books=Book::all();
+        $users=User::all();
+
+        return view('admin.book.add_Reserved_book',compact('books','users'));
+
     }
 
     /**
@@ -79,11 +100,16 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
+
+    public function  show($id){
+
+
+    }
     public function edit($id)
     {
        $book= Book::find($id);
-        $courses=Course::all();
-       return view('admin.book.edit',compact('book','courses'));
+        $categories=Category::all();
+       return view('admin.book.edit',compact('book','categories'));
 
 
     }

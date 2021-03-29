@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateCourseRequest;
-use App\Http\Requests\UpdateCourseRequest;
-use App\Models\Course;
+use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses=Course::all();
+        $categories=Category::all();
 
-        return view('admin.course.index',compact('courses'));
+        return view('admin.Category.index',compact('categories'));
 
     }
 
@@ -31,8 +31,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $teachers=User::where('role','1')->get();
-        return view('admin.course.create',compact('teachers'));
+        return view('admin.Category.create');
     }
 
     /**
@@ -41,25 +40,23 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCourseRequest $request)
+    public function store(CreateCategoryRequest $request)
     {
         $inputs=$request->except('_method','_token');
-        $course=Course::create($inputs);
-        if($course){
-            return redirect(route('course.index'))->with('success',"The $course->name course has been created successfully");
-
+        $category=Category::create($inputs);
+        if($category){
+            return redirect(route('Category.index'))->with('success',"The $category->name Category has been created successfully");
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Category $category)
     {
-
 
     }
 
@@ -71,9 +68,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $teachers=User::where('role','1')->get();
-        $course=Course::find($id);
-        return view('admin.course.edit',compact('teachers','course'));
+        $category=Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -86,9 +82,9 @@ class CourseController extends Controller
     public function update(UpdateCourseRequest  $request,$id)
     {
         $inputs=$request->except('_method','_token');
-        $course=Course::where('id',$id)->update( $inputs);
-        if($course){
-            return redirect(route('course.index'))->with('success','The course information has been successfully updated');
+        $category=Category::where('id',$id)->update( $inputs);
+        if($category){
+            return redirect(route('category.index'))->with('success','The Category information has been successfully updated');
 
         }
 

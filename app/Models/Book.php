@@ -10,8 +10,8 @@ class Book extends Model
     use HasFactory;
     protected $guarded=[''];
 
-    public  function course(){
-        return $this->belongsTo(Course::class);
+    public  function category(){
+        return $this->belongsTo(Category::class);
     }
 
 }

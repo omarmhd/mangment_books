@@ -70,6 +70,26 @@
                 </li>
 
             <li>
+
+                <a href="{{route('request.index')}}">
+                    <i class="icon-book-open"></i>
+                    <span class="title">requests  </span>
+                    <span class="arrow "></span>
+
+                </a>
+            </li>
+
+            <li>
+
+                <a href="{{route('profile_user.index',['user'=>auth()->user()->id])}}">
+                    <i class="icon-book-open"></i>
+                    <span class="title">my profile  </span>
+                    <span class="arrow "></span>
+
+                </a>
+            </li>
+
+            <li>
                 <a href="javascript:;">
                     <i class="icon-book-open"></i>
                     <span class="title">Books</span>
@@ -95,7 +115,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="{{route('course.index')}}">
+                        <a href="{{route('Category.index')}}">
                             <i class="icon-boo"></i>
                             Course management</a>
                     </li>

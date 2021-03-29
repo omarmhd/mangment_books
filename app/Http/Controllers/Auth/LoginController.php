@@ -44,7 +44,7 @@ class LoginController extends Controller
             return $this->redirectTo=  route('waiting.page');
 
         }
-        return $this->redirectTo=  route('course.create');
+        return $this->redirectTo=  route('profile_user.index');
 
 
     }

@@ -155,7 +155,7 @@
                             {{$book->name}}
                             </td>
                             <td>
-                                {{$book->course->name}}
+                                {{$book->category->name}}
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{$book->id}}">click here
@@ -228,8 +228,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="recipient-name" class="col-form-label">Course name :</label>
-                                                            <input type="text"  value="{{$book->course->name}}" disabled class="form-control" id="message-text">
+                                                            <label for="recipient-name" class="col-form-label">Category name :</label>
+                                                            <input type="text"  value="{{$book->category->name}}" disabled class="form-control" id="message-text">
                                                         </div>
                                                     </div>
                                                 </div>

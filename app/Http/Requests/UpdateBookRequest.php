@@ -25,7 +25,7 @@ class UpdateBookRequest extends FormRequest
     {
         return [
 
-            'course_id'=>'integer|exists:course,id',
+            'course_id'=>'integer|exists:Category,id',
             'name'=>"required|string|unique:books,name,{$this->book}",
             'number_copies'=>'required|numeric',
             'published_by'=>'required|string',

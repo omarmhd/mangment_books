@@ -25,7 +25,7 @@ class createBookRequest extends FormRequest
     {
         return [
 
-            'course_id'=>'integer|exists:courses,id',
+            'category_id'=>'integer|exists:categories,id',
             'name'=>"required|string|unique:books,name",
             'number_copies'=>'required|numeric',
             'published_by'=>'required|string',

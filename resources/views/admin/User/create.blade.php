@@ -130,11 +130,11 @@
                             <div class="form-group form-md-line-input has-info">
                                 <select class="form-control role" id="form_control_1" name="role">
                                     <option value=""  selected disabled="disabled">Choose Role</option>
-                                    <option value="1" >Adminstrator</option>
-                                    <option value="2">Bookstore Manager</option>
-                                    <option value="3">Dept Chairs</option>
-                                    <option value="4">Faculty</option>
-                                    <option value="5">Student</option>
+                                    <option value="Administrator" >Administrator</option>
+                                    <option value="BookstoreManager">Bookstore Manager</option>
+                                    <option value="DeptChairs">Dept Chairs</option>
+                                    <option value="Faculty">Faculty</option>
+                                    <option value="Student">Student</option>
                                 </select>
                                 <label for="form_control_1">Role</label>
                             </div>
@@ -169,18 +169,18 @@
     @push('script')
         <script>
 
+            $(function(){
 
             $('.role').change(function (){
-                if('4'==$(this).val()||'5'==$(this).val()) {
-                    $(".course").show();
+                if('Faculty'==$(this).val()||'Student'==$(this).val()) {
+                    $(".Category").show();
 
-                }else
-                {
-                    $(".course").hide();
+                }else{
+                    $(".Category").hide();
 
                 }
 
-            });
+            })});
 
         </script>
     @endpush

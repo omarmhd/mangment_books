@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCourseRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +26,8 @@ class CreateCourseRequest extends FormRequest
     {
         return [
             'user_id'=>'integer|exists:users,id',
-            'name'=>'required|string|unique:courses,name',
-            'number_course'=>'required|numeric',
+            'name'=>"required|string|unique:courses,name,{$this->course}",
+            'number_category'=>'required|numeric',
             'description'=>'nullable'
         ];
     }

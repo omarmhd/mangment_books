@@ -82,7 +82,6 @@
                                         <div class="input-icon">
                                             <input type="email" class="form-control" name="email" value="{{$user->email}}">
                                             <label for="form_control_1">Email</label>
-                                            {{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="icon-envelope-open"></i>
                                         </div>
                                     </div>
@@ -111,28 +110,27 @@
 
                             </div>
                             <div class="form-group form-md-line-input has-info">
-                                <select  class="form-control" id="form_control_1" name="role" value="{{$user->role}}">
+                                <select   class="form-control role" id="form_control_1" name="role" >
                                     <option   disabled="disabled">Choose Role</option>
-                                    <option value="1" >Adminstrator</option>
-                                    <option value="2">Bookstore Manager</option>
-                                    <option value="3">Dept Chairs</option>
-                                    <option value="4">Faculty</option>
-                                    <option value="5">Dean</option>
-                                    <option value="6">Student</option>
+                                    <option {{$user->role=='Administrator'?'selected':''}} value="Administrator" >Administrator</option>
+                                    <option {{$user->role=='BookstoreManager'?'selected':''}} value="BookstoreManager">Bookstore Manager</option>
+                                    <option {{$user->role=='DeptChairs'?'selected':''}} value="DeptChairs">Dept Chairs</option>
+                                    <option {{$user->role=='Faculty'?'selected':''}}value="Faculty">Faculty</option>
+                                    <option {{$user->role=='Student'?'selected':''}} value="Student">Student</option>
 
 
                                 </select>
                                 <label for="form_control_1">Role</label>
                             </div>
-                          <div class="form-group form-md-line-input has-info">
+                          <div class="form-group form-md-line-input has-info Category" style="display: none">
 
-                              <select class="form-control selectpicker " multiple name="course_id[]">
-                                  @foreach($courses as $course)
-                                      <option   @foreach($user->courses as $course_user) {{$course_user->id==$course->id?'selected':''}}@endforeach  value="{{$course->id}}">{{$course->name}}</option>
+                              <select class="form-control selectpicker " multiple name="category_id[]">
+                                  @foreach($categories as $category)
+                                      <option   @foreach($user->categories as $category_user) {{$category_user->id==$category->id?'selected':''}}@endforeach  value="{{$category->id}}">{{$category->name}}</option>
 
                                   @endforeach
                               </select>
-                              <label for="form_control_1">course</label>
+                              <label for="form_control_1">category</label>
 
                           </div>
 
@@ -154,4 +152,26 @@
         </div>
     </div>
 
+    @push('script')
+        <script>
+
+
+
+         $(function(){
+           $('.role').change(function (){
+               if("Faculty"==$(this).val()||"Student"==$(this).val()) {
+                   $(".Category").show();
+               }else{
+                       $(".Category").hide();
+
+
+               }
+
+
+           })
+                         });
+
+        </script>
+
+ @endpush
 @endsection

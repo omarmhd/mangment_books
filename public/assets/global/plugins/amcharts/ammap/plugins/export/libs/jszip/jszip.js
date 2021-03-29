@@ -5163,7 +5163,7 @@ function DeflateState() {
    *     adaptation to changes in the input data statistics. (Take for
    *     example a binary file with poorly compressible code followed by
    *     a highly compressible string table.) Smaller buffer sizes give
-   *     fast adaptation but have of course the overhead of transmitting
+   *     fast adaptation but have of Category the overhead of transmitting
    *     trees more frequently.
    *   - I can't count above 4
    */
@@ -5727,7 +5727,7 @@ function GZheader() {
                        // but leave for few code modifications
 
   //
-  // Setup limits is not necessary because in js we should not preallocate memory 
+  // Setup limits is not necessary because in js we should not preallocate memory
   // for inflate use constant limit in 65536 bytes
   //
 

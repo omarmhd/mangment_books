@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCourseRequest extends FormRequest
+class CreateReservationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class UpdateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'=>'integer|exists:users,id',
-            'name'=>"required|string|unique:courses,name,{$this->course}",
-            'number_course'=>'required|numeric',
-            'description'=>'nullable'
+               'user_id'=>'integer|exists:users,id',
+                'book_id'=>'integer|exists:books,id',
+                'name'=>'required',
+                'note'=>'nullable',
+                'collection_appointment'=>'required|date',
+
         ];
     }
 }

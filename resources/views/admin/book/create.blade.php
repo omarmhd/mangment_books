@@ -190,13 +190,13 @@
                               </div>
                           </div>
                           <div class="form-group form-md-line-input has-info">
-                              <select class="form-control" id="form_control_1" name="course_id" >
-                                  <option value=""  selected disabled="disabled">Choose Course</option>
-                                  @foreach($courses as $course)
-                                      <option value="{{$course->id}}">{{$course->name}}</option>
+                              <select class="form-control" id="form_control_1" name="category_id" >
+                                  <option value=""  selected disabled="disabled">Choose category</option>
+                                  @foreach($categories as $category)
+                                      <option value="{{$category->id}}">{{$category->name}}</option>
                                   @endforeach
                               </select>
-                              <label for="form_control_1">Course </label>
+                              <label for="form_control_1">categories </label>
                           </div>
 
                           <div class="form-group form-md-line-input has-info"   >
@@ -204,7 +204,7 @@
                               <label for="form_control_1">Cover book</label>
 
                           </div>
-                            <div class="form-group form-md-line-input has-info" id="Upload" style="display:none">
+                            <div class="form-group form-md-line-input has-info" id="Upload" >
                                 <input type="file" class="form-control book" name="file"   >
                                 <label for="form_control_1">Upload book</label>
 
@@ -225,6 +225,7 @@
 @push('script')
     <script>
         $(".md-radiobtn").change(function (){
+
             if($(this).val()=="Electronic")
             {
                 $("#Upload").show();
@@ -235,7 +236,6 @@
             else
             {
                 $(".delivery_date").show();
-                $("#Upload").hide();
 
             }
 

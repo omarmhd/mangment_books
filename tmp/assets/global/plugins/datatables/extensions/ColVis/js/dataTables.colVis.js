@@ -232,7 +232,7 @@ ColVis.prototype = {
 
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * Private methods (they are of course public in JS, but recommended as private)
+	 * Private methods (they are of Category public in JS, but recommended as private)
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 	/**
@@ -321,7 +321,7 @@ ColVis.prototype = {
 			this.s.restore = this.s.sRestore;
 		}
 
-		// CamelCase to Hungarian for the column groups 
+		// CamelCase to Hungarian for the column groups
 		var groups = this.s.groups;
 		var hungarianGroups = this.s.aoGroups;
 		if ( groups ) {

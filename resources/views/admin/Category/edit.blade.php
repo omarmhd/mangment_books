@@ -80,7 +80,7 @@
                             </ul>
                         </div>
                     @endif
-                        <form role="form" action="{{route('course.update',['course'=>$course->id])}}" method="post" enctype="multipart/form-data" >
+                        <form role="form" action="{{route('Category.update',['Category'=>$course->id])}}" method="post" enctype="multipart/form-data" >
                         @csrf
                             @method('Put')
 
@@ -90,7 +90,7 @@
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
                                             <input type="text" class="form-control" name="name" value="{{$course->name}}">
-                                            <label for="form_control_1">Course name </label>
+                                            <label for="form_control_1">category name </label>
                                             {{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="fa fa-book"></i>
                                         </div>
@@ -101,7 +101,7 @@
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
                                             <input type="number" class="form-control" name="number_course" value="{{$course->number_course}}">
-                                            <label for="form_control_1">number course</label>
+                                            <label for="form_control_1">number category</label>
                                             {{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="fa fa-barcode"></i>
                                         </div>
@@ -120,21 +120,13 @@
                                 </div>
 
                             </div>
-                            <div class="form-group form-md-line-input has-info">
-                                <select class="form-control" id="form_control_1" name="user_id" >
-                                    <option value=""  selected disabled="disabled">Choose teacher</option>
-                                    @foreach($teachers as $teacher)
-                                        <option {{$course->user_id==$teacher->id?'selected':''}} value="{{$teacher->id}}">{{$teacher->name}}</option>
-                                    @endforeach
-                                </select>
-                                <label for="form_control_1">Course teacher</label>
-                            </div>
+
 
 
                         </div>
                         <div class="form-actions noborder">
                             <button type="submit" class="btn blue">Submit</button>
-                            <a  href="{{route('course.index')}}" class="btn default">Cancel</a>
+                            <a  href="{{route('Category.index')}}" class="btn default">Cancel</a>
                         </div>
                     </form>
                 </div>

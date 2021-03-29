@@ -19,6 +19,8 @@
 <link href="{{asset('assets')}}/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets')}}/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css"/>
 <link href="{{asset('assets')}}/admin/pages/css/portfolio.css" rel="stylesheet" type="text/css"/>
+<link href="{{asset('assets')}}/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
+
 <!-- BEGIN THEME STYLES -->
 <link href="{{asset('assets')}}/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="{{asset('assets')}}/global/css/plugins.css" rel="stylesheet" type="text/css"/>

@@ -27,6 +27,7 @@
 <script src="{{asset('assets')}}/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="{{asset('assets')}}/admin/pages/scripts/table-editable.js"></script>
 <script src="{{asset('assets')}}/admin/pages/scripts/portfolio.js"></script>
+<script src="{{asset('assets')}}/admin/pages/scripts/profile.js" type="text/javascript"></script>
 
 
 <script>

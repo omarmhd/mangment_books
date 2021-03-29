@@ -2054,7 +2054,7 @@ function DeflateState() {
    *     adaptation to changes in the input data statistics. (Take for
    *     example a binary file with poorly compressible code followed by
    *     a highly compressible string table.) Smaller buffer sizes give
-   *     fast adaptation but have of course the overhead of transmitting
+   *     fast adaptation but have of Category the overhead of transmitting
    *     trees more frequently.
    *   - I can't count above 4
    */
@@ -6028,7 +6028,7 @@ exports.UNZIP = 7;
 function Zlib(mode) {
   if (mode < exports.DEFLATE || mode > exports.UNZIP)
     throw new TypeError("Bad argument");
-    
+
   this.mode = mode;
   this.init_done = false;
   this.write_in_progress = false;
@@ -6046,18 +6046,18 @@ Zlib.prototype.init = function(windowBits, level, memLevel, strategy, dictionary
   this.memLevel = memLevel;
   this.strategy = strategy;
   // dictionary not supported.
-  
+
   if (this.mode === exports.GZIP || this.mode === exports.GUNZIP)
     this.windowBits += 16;
-    
+
   if (this.mode === exports.UNZIP)
     this.windowBits += 32;
-    
+
   if (this.mode === exports.DEFLATERAW || this.mode === exports.INFLATERAW)
     this.windowBits = -this.windowBits;
-    
+
   this.strm = new zstream();
-  
+
   switch (this.mode) {
     case exports.DEFLATE:
     case exports.GZIP:
@@ -6083,12 +6083,12 @@ Zlib.prototype.init = function(windowBits, level, memLevel, strategy, dictionary
     default:
       throw new Error("Unknown mode " + this.mode);
   }
-  
+
   if (status !== exports.Z_OK) {
     this._error(status);
     return;
   }
-  
+
   this.write_in_progress = false;
   this.init_done = true;
 };
@@ -6100,31 +6100,31 @@ Zlib.prototype.params = function() {
 Zlib.prototype._writeCheck = function() {
   if (!this.init_done)
     throw new Error("write before init");
-    
+
   if (this.mode === exports.NONE)
     throw new Error("already finalized");
-    
+
   if (this.write_in_progress)
     throw new Error("write already in progress");
-    
+
   if (this.pending_close)
     throw new Error("close is pending");
 };
 
-Zlib.prototype.write = function(flush, input, in_off, in_len, out, out_off, out_len) {    
+Zlib.prototype.write = function(flush, input, in_off, in_len, out, out_off, out_len) {
   this._writeCheck();
   this.write_in_progress = true;
-  
+
   var self = this;
   process.nextTick(function() {
     self.write_in_progress = false;
     var res = self._write(flush, input, in_off, in_len, out, out_off, out_len);
     self.callback(res[0], res[1]);
-    
+
     if (self.pending_close)
       self.close();
   });
-  
+
   return this;
 };
 
@@ -6142,7 +6142,7 @@ Zlib.prototype.writeSync = function(flush, input, in_off, in_len, out, out_off, 
 
 Zlib.prototype._write = function(flush, input, in_off, in_len, out, out_off, out_len) {
   this.write_in_progress = true;
-  
+
   if (flush !== exports.Z_NO_FLUSH &&
       flush !== exports.Z_PARTIAL_FLUSH &&
       flush !== exports.Z_SYNC_FLUSH &&
@@ -6151,18 +6151,18 @@ Zlib.prototype._write = function(flush, input, in_off, in_len, out, out_off, out
       flush !== exports.Z_BLOCK) {
     throw new Error("Invalid flush value");
   }
-  
+
   if (input == null) {
     input = new Buffer(0);
     in_len = 0;
     in_off = 0;
   }
-  
+
   if (out._set)
     out.set = out._set;
   else
     out.set = bufferSet;
-  
+
   var strm = this.strm;
   strm.avail_in = in_len;
   strm.input = input;
@@ -6170,7 +6170,7 @@ Zlib.prototype._write = function(flush, input, in_off, in_len, out, out_off, out
   strm.avail_out = out_len;
   strm.output = out;
   strm.next_out = out_off;
-  
+
   switch (this.mode) {
     case exports.DEFLATE:
     case exports.GZIP:
@@ -6186,11 +6186,11 @@ Zlib.prototype._write = function(flush, input, in_off, in_len, out, out_off, out
     default:
       throw new Error("Unknown mode " + this.mode);
   }
-  
+
   if (status !== exports.Z_STREAM_END && status !== exports.Z_OK) {
     this._error(status);
   }
-  
+
   this.write_in_progress = false;
   return [strm.avail_in, strm.avail_out];
 };
@@ -6200,15 +6200,15 @@ Zlib.prototype.close = function() {
     this.pending_close = true;
     return;
   }
-  
+
   this.pending_close = false;
-  
+
   if (this.mode === exports.DEFLATE || this.mode === exports.GZIP || this.mode === exports.DEFLATERAW) {
     zlib_deflate.deflateEnd(this.strm);
   } else {
     zlib_inflate.inflateEnd(this.strm);
   }
-  
+
   this.mode = exports.NONE;
 };
 
@@ -6223,7 +6223,7 @@ Zlib.prototype.reset = function() {
       var status = zlib_inflate.inflateReset(this.strm);
       break;
   }
-  
+
   if (status !== exports.Z_OK) {
     this._error(status);
   }
@@ -6231,7 +6231,7 @@ Zlib.prototype.reset = function() {
 
 Zlib.prototype._error = function(status) {
   this.onerror(msg[status] + ': ' + this.strm.msg, status);
-  
+
   this.write_in_progress = false;
   if (this.pending_close)
     this.close();
@@ -9931,7 +9931,7 @@ function indexOf (xs, x) {
 // something with the data.  Sometimes it's called a "filter",
 // but that's not a great name for it, since that implies a thing where
 // some bits pass through, and others are simply ignored.  (That would
-// be a valid example of a transform, of course.)
+// be a valid example of a transform, of Category.)
 //
 // While the output is causally related to the input, it's not a
 // necessarily symmetric or synchronous transformation.  For example,
@@ -25132,12 +25132,12 @@ By Devon Govett
  * An implementation of Ruby's string.succ method.
  * By Devon Govett
  *
- * Returns the successor to str. The successor is calculated by incrementing characters starting 
+ * Returns the successor to str. The successor is calculated by incrementing characters starting
  * from the rightmost alphanumeric (or the rightmost character if there are no alphanumerics) in the
  * string. Incrementing a digit always results in another digit, and incrementing a letter results in
  * another letter of the same case.
  *
- * If the increment generates a carry, the character to the left of it is incremented. This 
+ * If the increment generates a carry, the character to the left of it is incremented. This
  * process repeats until there is no carry, adding an additional character if necessary.
  *
  * succ("abcd")      == "abce"
@@ -26455,7 +26455,7 @@ By Devon Govett
       this._fontSize = 12;
       this._font = null;
       this._registeredFonts = {};
-      
+
     },
     font: function(src, family, size) {
       var cacheKey, font, id, _ref;
@@ -28258,20 +28258,20 @@ module.exports={"data":[1961,1969,1977,1985,2025,2033,2041,2049,2057,2065,2073,2
 /*
 # MIT LICENSE
 # Copyright (c) 2011 Devon Govett
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this 
-# software and associated documentation files (the "Software"), to deal in the Software 
-# without restriction, including without limitation the rights to use, copy, modify, merge, 
-# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons 
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this
+# software and associated documentation files (the "Software"), to deal in the Software
+# without restriction, including without limitation the rights to use, copy, modify, merge,
+# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
 # to whom the Software is furnished to do so, subject to the following conditions:
-# 
-# The above copyright notice and this permission notice shall be included in all copies or 
+#
+# The above copyright notice and this permission notice shall be included in all copies or
 # substantial portions of the Software.
-# 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING 
-# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
-# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
-# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
@@ -28970,7 +28970,7 @@ DocMeasure.prototype.measureNode = function(node) {
 				margin = convertMargin(flattenedStyleArray.margin);
 			}
 		}
-		
+
 		margin = processSingleMargins(node, margin);
 
 		if(node.margin){
@@ -29359,9 +29359,9 @@ function DocumentContext(pageSize, pageMargins) {
 	this.snapshots = [];
 
 	this.endingCell = null;
-    
+
   this.tracker = new TraversalTracker();
-    
+
 	this.addPage(pageSize);
 }
 
@@ -29475,9 +29475,9 @@ function pageOrientation(pageOrientationString, currentPageOrientation){
 }
 
 var getPageSize = function (currentPage, newPageOrientation) {
-	
+
 	newPageOrientation = pageOrientation(newPageOrientation, currentPage.pageSize.orientation);
-	
+
 	if(newPageOrientation !== currentPage.pageSize.orientation) {
 		return {
 			orientation: newPageOrientation,
@@ -29491,7 +29491,7 @@ var getPageSize = function (currentPage, newPageOrientation) {
 			height: currentPage.pageSize.height
 		};
 	}
-	
+
 };
 
 
@@ -29525,7 +29525,7 @@ DocumentContext.prototype.addPage = function(pageSize) {
 	this.initializePage();
 
 	this.tracker.emit('pageAdded');
-    
+
 	return page;
 };
 
@@ -30090,9 +30090,9 @@ LayoutBuilder.prototype.tryLayoutDocument = function (docStructure, fontProvider
 
 LayoutBuilder.prototype.addBackground = function(background) {
     var backgroundGetter = isFunction(background) ? background : function() { return background; };
-    
+
     var pageBackground = backgroundGetter(this.writer.context().page + 1);
-    
+
     if (pageBackground) {
       var pageSize = this.writer.context().getCurrentPage().pageSize;
       this.writer.beginUnbreakableBlock(pageSize.width, pageSize.height);
@@ -30104,7 +30104,7 @@ LayoutBuilder.prototype.addBackground = function(background) {
 LayoutBuilder.prototype.addStaticRepeatable = function(node, x, y, width, height) {
   var pages = this.writer.context().pages;
   this.writer.context().page = 0;
-  
+
   this.writer.beginUnbreakableBlock(width, height);
   this.processNode(this.docMeasure.measureDocument(node));
   var repeatable = this.writer.currentBlockToRepeatable();
@@ -30144,7 +30144,7 @@ LayoutBuilder.prototype.addHeadersAndFooters = function(header, footer) {
       height: pageMargins.top
     };
   };
-  
+
   var footerSizeFct = function (pageSize, pageMargins) {
     return {
       x: 0,
@@ -30153,7 +30153,7 @@ LayoutBuilder.prototype.addHeadersAndFooters = function(header, footer) {
       height: pageMargins.bottom
     };
   };
-  
+
   if(isFunction(header)) {
     this.addDynamicRepeatable(header, headerSizeFct);
   } else if(header) {
@@ -30638,9 +30638,9 @@ PageElementWriter.prototype.addFragment = function(fragment, useBlockXOffset, us
 };
 
 PageElementWriter.prototype.moveToNextPage = function(pageOrientation) {
-	
+
 	var nextPage = this.writer.context.moveToNextPage(pageOrientation);
-	
+
   if (nextPage.newPageCreated) {
 		this.repeatables.forEach(function(rep) {
 			this.writer.addFragment(rep, true);
@@ -31861,7 +31861,7 @@ function generateFrame(data, options) {
 //   modules, so it is better not to alter this value unless you know what
 //   you're doing.
 function buildCanvas(data, options) {
-   
+
     var canvas = [];
     var background = data.background || '#fff';
     var foreground = data.foreground || '#000';
@@ -31870,12 +31870,12 @@ function buildCanvas(data, options) {
 	var n = matrix.length;
 	var modSize = Math.floor( options.fit ? options.fit/n : 5 );
 	var size = n * modSize;
-	
+
     canvas.push({
       type: 'rect',
       x: 0, y: 0, w: size, h: size, lineWidth: 0, color: background
     });
-    
+
 	for (var i = 0; i < n; ++i) {
 		for (var j = 0; j < n; ++j) {
             if(matrix[i][j]) {
@@ -31891,12 +31891,12 @@ function buildCanvas(data, options) {
             }
         }
     }
-    
+
     return {
         canvas: canvas,
         size: size
     };
-		
+
 }
 
 function measure(node) {
@@ -32200,9 +32200,9 @@ TableProcessor.prototype.onRowBreak = function(rowIndex, writer) {
   return function() {
     //console.log('moving by : ', topLineWidth, rowPaddingTop);
     var offset = self.rowPaddingTop + (!self.headerRows ? self.topLineWidth : 0);
-    writer.context().moveDown(offset);  
+    writer.context().moveDown(offset);
   };
-  
+
 };
 
 TableProcessor.prototype.beginRow = function(rowIndex, writer) {
@@ -32210,7 +32210,7 @@ TableProcessor.prototype.beginRow = function(rowIndex, writer) {
   this.rowPaddingTop = this.layout.paddingTop(rowIndex, this.tableNode);
   this.bottomLineWidth = this.layout.hLineWidth(rowIndex+1, this.tableNode);
   this.rowPaddingBottom = this.layout.paddingBottom(rowIndex, this.tableNode);
-  
+
   this.rowCallback = this.onRowBreak(rowIndex, writer);
   writer.tracker.startTracking('pageChanged', this.rowCallback );
     if(this.dontBreakRows) {
@@ -32266,7 +32266,7 @@ TableProcessor.prototype.drawHorizontalLine = function(lineIndex, writer, overri
 
 TableProcessor.prototype.drawVerticalLine = function(x, y0, y1, vLineIndex, writer) {
   var width = this.layout.vLineWidth(vLineIndex, this.tableNode);
-  if (width === 0) return;  
+  if (width === 0) return;
   writer.addVector({
     type: 'line',
     x1: x + width/2,
@@ -32389,7 +32389,7 @@ TableProcessor.prototype.endRow = function(rowIndex, writer, pageBreaks) {
     }
 
     if(this.dontBreakRows) {
-      writer.tracker.auto('pageChanged', 
+      writer.tracker.auto('pageChanged',
         function() {
           self.drawHorizontalLine(rowIndex, writer);
         },
@@ -32452,11 +32452,11 @@ function groupDecorations(line) {
 			if(!curGroup || deco !== curGroup.decoration ||
 					style !== curGroup.decorationStyle || color !== curGroup.decorationColor ||
 					deco === 'lineThrough') {
-		
+
 				curGroup = {
 					line: line,
-					decoration: deco, 
-					decorationColor: color, 
+					decoration: deco,
+					decorationColor: color,
 					decorationStyle: style,
 					inlines: [ inline ]
 				};
@@ -32466,7 +32466,7 @@ function groupDecorations(line) {
 			}
 		}
 	}
-	
+
 	return groups;
 }
 
@@ -32493,9 +32493,9 @@ function drawDecoration(group, x, y, pdfKitDoc) {
 		ascent = biggerInline.font.ascender / 1000 * biggerInline.fontSize,
 		height = biggerInline.height,
 		descent = height - ascent;
-	
+
 	var lw = 0.5 + Math.floor(Math.max(biggerInline.fontSize - 8, 0) / 2) * 0.12;
-	
+
 	switch (group.decoration) {
 		case 'underline':
 			y += lineAscent + descent * 0.45;
@@ -32510,7 +32510,7 @@ function drawDecoration(group, x, y, pdfKitDoc) {
 			throw 'Unkown decoration : ' + group.decoration;
 	}
 	pdfKitDoc.save();
-	
+
 	if(group.decorationStyle === 'double') {
 		var gap = Math.max(0.5, lw*2);
 		pdfKitDoc	.fillColor(group.decorationColor)
@@ -32547,7 +32547,7 @@ function drawDecoration(group, x, y, pdfKitDoc) {
 				rwx += sh*6;
 			}
 		pdfKitDoc.stroke(group.decorationColor);
-		
+
 	} else {
 		pdfKitDoc	.fillColor(group.decorationColor)
 					.rect(x + firstInline.x, y-lw/2, totalWidth, lw)
