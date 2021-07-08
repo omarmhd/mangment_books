@@ -12,23 +12,9 @@
         </div>
     @endif
 <h3 class="page-title">
-    User Account <small>user account page sample</small>
-</h3>
+    My profile </h3>
 <div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="#">Pages</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="#">User Account</a>
-        </li>
-    </ul>
+
 
 </div>
 

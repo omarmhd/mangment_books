@@ -26,7 +26,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'user_id'=>'integer|exists:users,id',
-            'name'=>"required|string|unique:courses,name,{$this->course}",
+            'name'=>"required|string|unique:categories,name,{$this->Category}",
             'number_category'=>'required|numeric',
             'description'=>'nullable'
         ];

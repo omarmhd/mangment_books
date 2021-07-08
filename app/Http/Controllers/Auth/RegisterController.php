@@ -54,9 +54,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed','regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,16}$/'],
             'image' => ['required', 'image'],
-            'phone'=>['required','numeric']
+            'phone'=>['required','numeric'],
+            'student_id'=>['required','min:9','max:9']
 
         ]);
     }
@@ -80,6 +81,8 @@ class RegisterController extends Controller
             'image' =>$file_service->upload($data['image'], 'files'),
             'role' =>$data['role'],
             'phone'=>$data['phone'],
+            'student_id'=>$data['student_id'],
+
             'status'=>'0'
 
         ]);

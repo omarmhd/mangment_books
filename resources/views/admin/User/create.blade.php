@@ -89,7 +89,6 @@
                                         <div class="input-icon">
                                             <input type="text" class="form-control" name="name">
                                             <label for="form_control_1">User name </label>
-{{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="icon-user"></i>
                                         </div>
                                     </div>
@@ -138,15 +137,15 @@
                                 </select>
                                 <label for="form_control_1">Role</label>
                             </div>
-                          <div class="form-group form-md-line-input has-info course" style="display: none">
+                          <div class="form-group form-md-line-input has-info Category" style="display: none">
 
                           <select class="form-control selectpicker " multiple name="course_id[]">
-                            @foreach($courses as $course)
-                              <option value="{{$course->id}}">{{$course->name}}</option>
+                            @foreach($categories as $category)
+                              <option value="{{$category->id}}">{{$category->name}}</option>
 
                                 @endforeach
                           </select>
-                              <label for="form_control_1">Courses</label>
+                              <label for="form_control_1">Category</label>
 
                           </div>
                             <div class="form-group form-md-line-input has-info">

@@ -9,7 +9,7 @@
     <!-- END STYLE CUSTOMIZER -->
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        Mangement Users
+        Management    Users
     </h3>
     <div class="page-bar">
         <ul class="page-breadcrumb">
@@ -19,7 +19,7 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="">Mangement Users</a>
+                <a href="">management Users</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>

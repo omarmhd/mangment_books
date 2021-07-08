@@ -3,23 +3,16 @@
 
 <div class="page-bar">
     <ul class="page-breadcrumb">
+
         <li>
             <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
             <a href="#">Dashboard</a>
         </li>
     </ul>
-    <div class="page-toolbar">
-        <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm btn-default" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
-            <i class="icon-calendar"></i>&nbsp; <span class="thin uppercase visible-lg-inline-block"></span>&nbsp; <i class="fa fa-angle-down"></i>
-        </div>
-    </div>
+
 </div>
 <h3 class="page-title">
-    Dashboard <small>reports & statistics</small>
+    Dashboard <small>statistics</small>
 </h3>
 <!-- END PAGE HEADER-->
 <!-- BEGIN DASHBOARD STATS -->
@@ -31,15 +24,13 @@
             </div>
             <div class="details">
                 <div class="number">
-                    {{$count_course}}
+                    {{$count_book}}
                 </div>
                 <div class="desc">
-                    courses
+                    BOOKS
                 </div>
             </div>
-            <a class="more" href="javascript:;">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -49,15 +40,13 @@
             </div>
             <div class="details">
                 <div class="number">
-                    21
+                    {{$count_request}}
                 </div>
                 <div class="desc">
-                    Requests
+                    REQUESTS
                 </div>
             </div>
-            <a class="more" href="javascript:;">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -67,15 +56,13 @@
             </div>
             <div class="details">
                 <div class="number">
-                    {{$count_book}}
+                    {{$count_Administrator}}
                 </div>
                 <div class="desc">
-                    Books
+                    Administrators
                 </div>
             </div>
-            <a class="more" href="javascript:;">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -85,15 +72,13 @@
             </div>
             <div class="details">
                 <div class="number">
-                    20
+                    {{$count_BookstoreManager}}
                 </div>
                 <div class="desc">
-                    faculty
+                    BookstoreManager
                 </div>
             </div>
-            <a class="more" href="javascript:;">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -103,15 +88,46 @@
             </div>
             <div class="details">
                 <div class="number">
-                    10
+                    {{$count_DeptChairs}}
                 </div>
                 <div class="desc">
-                    Students
+                 DeptChairs
                 </div>
             </div>
-            <a class="more" href="javascript:;">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-            </a>
+
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat purple-plum">
+            <div class="visual">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{$count_Faculty}}
+                </div>
+                <div class="desc">
+                    Faculty
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat purple-plum">
+            <div class="visual">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{$count_Student}}
+                </div>
+                <div class="desc">
+                    Student
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

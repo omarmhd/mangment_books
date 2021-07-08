@@ -4,79 +4,18 @@
 @section('content')
 
 
-
-    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    Widget settings form goes here
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn blue">Save changes</button>
-                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <!-- BEGIN STYLE CUSTOMIZER -->
-    <!-- END STYLE CUSTOMIZER -->
-    <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        Mangment users
-    </h3>
-    <div class="page-bar">
-        <ul class="page-breadcrumb">
-            <li>
-                <i class="fa fa-home"></i>
-                <a href="index.html">Home</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
+        Manegment  Requests</h3>
 
-            <li>
-                <a href="#">Mangment users</a>
-            </li>
-        </ul>
-        <div class="page-toolbar">
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                    Actions <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu pull-right" role="menu">
-                    <li>
-                        <a href="#">Action</a>
-                    </li>
-                    <li>
-                        <a href="#">Another action</a>
-                    </li>
-                    <li>
-                        <a href="#">Something else here</a>
-                    </li>
-                    <li class="divider">
-                    </li>
-                    <li>
-                        <a href="#">Separated link</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- END PAGE HEADER-->
-    <!-- BEGIN PAGE CONTENT-->
+
+
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-edit"></i>users table
+                        <i class="fa fa-edit"></i>Table Requests
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
@@ -90,37 +29,7 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="table-toolbar">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="btn-group">
-                                    <a id="" class="btn green" href="{{route('book.create')}}" >
-                                        Add New <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="btn-group pull-right">
-                                    <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li>
-                                            <a href="javascript:;">
-                                                Print </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                Save as PDF </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                Export to Excel </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                         <thead>
                         <tr>
@@ -128,7 +37,7 @@
                                 id
                             </th>
                             <th>
-                                Name Book
+                                Book name
                             </th>
                             <th>
                                 Request
@@ -145,15 +54,9 @@
                         </tr>
                         </thead>
                         <tbody>
-{{--                        <tr>--}}
 
-{{--                            <td></td>--}}
-{{--                            <td></td>--}}
-{{--                            <td></td>--}}
-{{--                            <td></td>--}}
-{{--                            <td></td>--}}
-{{--                            <td></td>2--}}
-{{--                        </tr>--}}
+
+
                         @foreach($requests as $request)
                             <tr>
                                 <td>
@@ -163,7 +66,16 @@
                                     {{$request->book->name}}
                                 </td>
                                 <td>
-                                    {{$request->request=='E' ?'E-book':'Hard Book'}}
+                                    {{$request->request=='E' ?'E-book':''}}
+                                    {{$request->request=='H' ?'H-book':''}}
+
+                                    @if($request->request=='C')
+                                        <a class="" data-toggle="modal" data-target="#exampleModalCenter{{$request->id}}">Change book </a>
+
+
+                                    @endif
+
+
 
                                 </td>
                                 <td>
@@ -171,8 +83,7 @@
                                 </td>
 
                                 <td>
-
-                                     @if($request->status=='-1')
+                                    @if($request->status=='-1')
 
                                         <span class="label label-sm label-warning">
 									    pending
@@ -196,20 +107,57 @@
                                 </td>
 
                                 <td>
-                                    @if($request->status=='1')
 
-                                    <a class="btn btn-danger update"    href=" {{route('admin.request.update_status',['id'=>$request->id,'status'=>'0'])}}" data-id="{{$request->id}}"  > <i class="fa fa-close"></i>reject
+                                        <a title="accept" class="btn margin-right-10" style="background-color: #12f302"  href=" {{route('admin.request.update_status',['id'=>$request->id,'status'=>'1'])}}">
+                                            <i style="color: #fff6a1" class="fa  fa-check-square-o">
+                                            </i>
+                                        </a>
+                                    <a title="reject" class="btn margin-right-10" style="background-color: #f38702" href=" {{route('admin.request.update_status',['id'=>$request->id,'status'=>'0'])}}">
+                                        <i style="color: #fff6a1" class="fa  fa-times-circle">
+                                        </i>
                                     </a>
 
-                                    @else
 
-                                    <a class="btn btn-primary update"   href=" {{route('admin.request.update_status',['id'=>$request->id,'status'=>'1'])}}" data-id="{{$request->id}}"  > <i class="fa fa-check "> </i>accept
-                                    </a>
 
-                                        @endif
+
                                 </td>
 
                             </tr>
+                            <div class="modal fade" id="exampleModalCenter{{$request->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Change Book to </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">New book:</label>
+                                                        <input type="text" value="{{$request->new_book}}"  readonly class="form-control" id="recipient-name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">New book link Or Details :</label>
+                                                        <input type="text" value="{{$request->new_book_link}}" disabled class="form-control" id="recipient-name">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                           </td>
 
                         @endforeach
 

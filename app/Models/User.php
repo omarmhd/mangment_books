@@ -45,6 +45,9 @@ class User extends Authenticatable
     public function books(){
         return $this->belongsToMany(Book::class  );
     }
+    public function requests(){
+        return $this->hasMany(Request::class  );
+    }
     public function redirectTo(){
 
         return route('Category.index');
@@ -52,5 +55,7 @@ class User extends Authenticatable
     public function logout(Request $request){
              return route('Category.index');
     }
+
+
 
 }

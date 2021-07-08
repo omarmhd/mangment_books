@@ -16,16 +16,11 @@ class createBookRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
 
-            'category_id'=>'integer|exists:categories,id',
+            'category_id'=>'required|integer|exists:categories,id',
             'name'=>"required|string|unique:books,name",
             'number_copies'=>'required|numeric',
             'published_by'=>'required|string',

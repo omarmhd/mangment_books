@@ -80,21 +80,21 @@
                             </ul>
                         </div>
                     @endif
-                    <form role="form" action="{{route('request.store')}}" method="post" >
+                    <form role="form" action="{{route('admin.storeReservedBook.store')}}" method="post" >
                         @csrf
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-5">
+                                 <div class="col-md-5">
 
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
+                                        <label for="form_cont_1rol">Book  name </label>
+
                                         <div class="input-icon">
-
-                                            <label for="form_control_1">Book  name </label>
-
-                                            <select class="selectpicker" data-live-search="true">
+                                            <select class="selectpicker" data-live-search="true" name="book_id">
+                                                <option selected disabled >Nothing Selected </option>
 
                                                 @foreach($books as $book)
-                                                <option data-tokens="ketchup mustard" value="{{$book->id}}">{{$book->name}}</option>
+                                                <option  value="{{$book->id}}">{{$book->name}}</option>
                                                 @endforeach
 
                                             </select>
@@ -103,29 +103,46 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5">
-                                    <div class="form-group form-md-line-input has-info ">
-                                        <select class="selectpicker" data-live-search="true">
-                                            <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                                        </select>
+                                    <div class="form-group form-md-line-input has-success form-md-floating-label">
+                                        <label for="form_cont_1rol">User Name</label>
 
-                                        <label for="form_control_1">Request</label>
+                                        <div class="input-icon">
+
+                                            <select class="selectpicker" data-live-search="true" name="user_id">
+
+                                                <option selected disabled >Nothing Selected </option>
+
+                                                @foreach($users as $user)
+                                                    <option data-tokens="ketchup mustard" value="{{$user->id}}">{{$user->name}}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
                                     </div>
-
-
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
+                                        <label for="form_control_1">Collection appointment</label>
+
                                         <div class="input-icon">
-                                            <input readonly type="text" class="form-control"  name="date" value="">
-                                            <label for="form_control_1">Collection appointment</label>
-                                            <i class="fa fa-book"></i>
+                                            <input  type="date" class="form-control"  name="collection_appointment">
                                         </div>
                                     </div>
                                 </div>
 
 
+                                <div class="col-md-5">
+                                    <div class="form-group form-md-line-input has-success form-md-floating-label">
+                                        <label for="form_control_1">Notes</label>
+
+                                        <div class="input-icon">
+                                            <input  type="text" class="form-control"  name="note" >
+                                            <i class="fa fa-file"></i>
+
+                                        </div>
+
+                                    </div>
+                                </div>
 
 
 
@@ -147,27 +164,5 @@
         </div>
     </div>
 
-    @push('script')
-        <script>
-            $(function(){
-
-                $('.request').change(function (){
-
-
-
-                    if('C'==$(this).val()) {
-                        $(".NewBook").show();
-                        $(".NewBookLink").show();
-
-                    }else{
-                        $(".NewBook").hide();
-                        $(".NewBookLink").hide();
-
-                    }
-
-                })});
-
-        </script>
-    @endpush
 
 @endsection

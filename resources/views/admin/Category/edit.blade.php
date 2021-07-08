@@ -80,7 +80,7 @@
                             </ul>
                         </div>
                     @endif
-                        <form role="form" action="{{route('Category.update',['Category'=>$course->id])}}" method="post" enctype="multipart/form-data" >
+                        <form role="form" action="{{route('Category.update',['Category'=>$category->id])}}" method="post" enctype="multipart/form-data" >
                         @csrf
                             @method('Put')
 
@@ -89,7 +89,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
-                                            <input type="text" class="form-control" name="name" value="{{$course->name}}">
+                                            <input type="text" class="form-control" name="name" value="{{$category->name}}">
                                             <label for="form_control_1">category name </label>
                                             {{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="fa fa-book"></i>
@@ -100,7 +100,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
-                                            <input type="number" class="form-control" name="number_course" value="{{$course->number_course}}">
+                                            <input type="number" class="form-control" name="number_category" value="{{$category->number_category}}">
                                             <label for="form_control_1">number category</label>
                                             {{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="fa fa-barcode"></i>
@@ -111,7 +111,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
-                                            <input type="text" class="form-control" name="description" value="{{$course->description}}">
+                                            <input type="text" class="form-control" name="description" value="{{$category->description}}">
                                             <label for="form_control_1">description</label>
                                             {{--                                            <span class="help-block">Some help goes here...</span>--}}
                                             <i class="icon-pencil"></i>

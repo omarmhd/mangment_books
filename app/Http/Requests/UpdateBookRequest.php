@@ -13,7 +13,7 @@ class UpdateBookRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class UpdateBookRequest extends FormRequest
     {
         return [
 
-            'course_id'=>'integer|exists:Category,id',
+            'category_id'=>'required|integer|exists:Category,id',
             'name'=>"required|string|unique:books,name,{$this->book}",
             'number_copies'=>'required|numeric',
             'published_by'=>'required|string',

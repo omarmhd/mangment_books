@@ -90,7 +90,6 @@
                                         <div class="input-icon">
                                             <input type="text" class="form-control" name="name" value="{{$book->name}}">
                                             <label for="form_control_1">Name book</label>
-                                            {{--     <span class="help-block">Some help goes here...</span>--}}
                                             <i class="icon-user"></i>
                                         </div>
                                     </div>
@@ -99,7 +98,7 @@
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
                                             <input type="number" min="0" class="form-control" value="{{$book->number_copies}}" name="number_copies">
-                                            <label for="form_control_1">   Number copies</label>
+                                            <label for="form_control_1">Number copies</label>
 
 
                                             {{--                                            <span class="help-block">Some help goes here...</span>--}}
@@ -191,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-md-line-input has-info">
-                                <select class="form-control" id="form_control_1" name="course_id" >
+                                <select class="form-control" id="form_control_1" name="category_id" >
                                     <option value=""   disabled="disabled">Choose Course</option>
                                     @foreach($categories as $category)
                                         <option {{$book->category->id==$category->id?'selected':''}} value="{{$category->id}}">{{$category->name}}</option>

@@ -26,7 +26,6 @@ class CreateReservationRequest extends FormRequest
         return [
                'user_id'=>'integer|exists:users,id',
                 'book_id'=>'integer|exists:books,id',
-                'name'=>'required',
                 'note'=>'nullable',
                 'collection_appointment'=>'required|date',
 

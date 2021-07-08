@@ -11,11 +11,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $categories=Category::all();
@@ -24,22 +20,13 @@ class CategoryController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('admin.Category.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(CreateCategoryRequest $request)
     {
         $inputs=$request->except('_method','_token');
@@ -49,47 +36,26 @@ class CategoryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Category $category)
     {
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $category=Category::find($id);
         return view('admin.category.edit',compact('category'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCourseRequest  $request,$id)
+  public function update(UpdateCategoryRequest  $request,$id)
     {
         $inputs=$request->except('_method','_token');
-        $category=Category::where('id',$id)->update( $inputs);
+        $category=Category::where('id',$id)->update($inputs);
         if($category){
-            return redirect(route('category.index'))->with('success','The Category information has been successfully updated');
-
-        }
-
-
-    }
+            return redirect(route('Category.index'))->with('success','The Category information has been successfully updated');
+             }
+   }
 
 
     /**
@@ -98,8 +64,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        return redirect()->back()->with('success','The Category  has been deleted successfully');
     }
 }

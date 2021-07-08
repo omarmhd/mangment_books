@@ -18,15 +18,32 @@ class UserController extends Controller
 
     public function index()
     {
-        $users=User::all();
+        $users=User::where('status','1')->Where('role', 'DeptChairs')->orWhere('role', 'BookstoreManager')
+            ->orWhere('role', 'Faculty')->orWhere('role', 'Student')->get();
         return view('admin.User.index',compact('users'));
     }
+    public function indexPendingUsers()
+    {
+        $users= User::where('status','0')->get();
+        return view('admin.user.indexPendingUsers',compact('users'));
+    }
+
 
         public function dashboard()
     {
-        $count_book=count( Category::all());
-        $count_course=count(Book::all());
-        return view('admin.dashboard',compact('count_book','count_course'));
+        $count_book=count( Book::all());
+        $count_Category=count(Category::all());
+        $count_request=count(\App\Models\Request::all());
+        $count_user=count(User::all());
+        $count_Administrator=count(User:: where('role','Administrator')->get());
+        $count_BookstoreManager=count(User:: where('role','BookstoreManager')->get());
+        $count_DeptChairs=count(User:: where('role','DeptChairs')->get());
+        $count_Faculty=count(User:: where('role','Faculty')->get());
+        $count_Student=count(User:: where('role','Student')->get());
+
+
+        return view('admin.dashboard',compact('count_book','count_Category','count_request','count_Administrator','count_BookstoreManager',
+        'count_user','count_DeptChairs','count_Faculty','count_Student'));
     }
 
     public function create()
@@ -98,8 +115,8 @@ class UserController extends Controller
         $id=auth()->user()->id;
         $user=User::findOrFail($id);
         $count_pending=$this->count_request($id ,'-1');
-        $count_accepted=$this->count_request($id ,'0');
-        $count_rejected=$this->count_request($id ,'1');
+        $count_accepted=$this->count_request($id ,'1');
+        $count_rejected=$this->count_request($id ,'0');
 
         return view('profile',compact('user','count_pending','count_accepted','count_rejected'));
 
@@ -121,8 +138,23 @@ class UserController extends Controller
              abort(404);
         }
    }
-   public function destroy($id)
+
+
+
+   public function updatePendingUsers($id)
+   {
+       $user = User::find($id);
+       $user->update(['status' => '1']);
+       if ($user) {
+
+           return back()->with('success', "$user->name is available now");
+
+       }
+   }
+
+    public function destroy($id)
     {
-        //
+         User::find($id)->delete();
+         return redirect()->back()->with('success','The use has been deleted successfully');
     }
 }

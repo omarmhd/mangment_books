@@ -33,9 +33,6 @@ class RequestController extends Controller
         'status'=>$status
     ]);
 
-
-
-
     if($request){
 
         if($status=='1'){

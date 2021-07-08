@@ -2,50 +2,10 @@
 @section('content')
 
 
-
-    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    Widget settings form goes here
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn blue">Save changes</button>
-                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <!-- BEGIN STYLE CUSTOMIZER -->
-    <!-- END STYLE CUSTOMIZER -->
-    <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        Mangement books
+        Management books
     </h3>
-    <div class="page-bar">
-        <ul class="page-breadcrumb">
-            <li>
-                <i class="fa fa-home"></i>
-                <a href="index.html">Home</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
-            <li>
-                <a href="#">Mangement books</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
-            <li>
-                <a href="#">Create book</a>
-            </li>
-        </ul>
-    </div>
+
     <!-- END PAGE HEADER-->
     <!-- BEGIN PAGE CONTENT-->
     <div class="row">
@@ -58,7 +18,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption font-red-sunglo">
-                        <span class="caption-subject bold uppercase">Create user</span>
+                        <span class="caption-subject bold uppercase">Add <Book>     </Book></span>
                     </div>
                     <div class="actions">
 
@@ -88,7 +48,7 @@
                                     <div class="form-group form-md-line-input has-success form-md-floating-label">
                                         <div class="input-icon">
                                             <input type="text" class="form-control" name="name">
-                                            <label for="form_control_1">Name book</label>
+                                            <label for="form_control_1">Book Name</label>
                  {{--     <span class="help-block">Some help goes here...</span>--}}
                                             <i class="icon-user"></i>
                                         </div>

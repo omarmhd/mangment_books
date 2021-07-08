@@ -19,7 +19,7 @@ class CreateRequestsTable extends Migration
             $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
 
             $table->string('request');
-            $table->string('new_book');
+            $table->string('new_book')->nullable();;
             $table->string('new_book_link')->nullable();
 
             $table->date('date');

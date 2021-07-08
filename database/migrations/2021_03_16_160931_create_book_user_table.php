@@ -17,8 +17,12 @@ class CreateBookUserTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
+            $table->string('book_name');
+            $table->string('user_name');
             $table->string('collection_appointment')->constrained('books')->onDelete('cascade');
             $table->string('note')->nullable();
+            $table->string('status');
+
             $table->timestamps();
         });
     }

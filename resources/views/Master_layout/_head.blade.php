@@ -1,5 +1,5 @@
 <meta charset="utf-8"/>
-<title>Metronic | Form Stuff - Material Design Form Controls</title>
+<title>Library</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -7,6 +7,8 @@
 <meta content="" name="author"/>
 <script src="livecss.js" type="text/javascript"></script>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link rel="icon" href="{{asset('files/logo.png')}}"  sizes="14x14">
+
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
 <link href="{{asset('assets')}}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="{{asset('assets')}}/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>

@@ -1,72 +1,22 @@
-
-
-    @extends('Master_layout.app')
+@extends('Master_layout.app')
 @section('content')
 
-
-
-    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    Widget settings form goes here
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn blue">Save changes</button>
-                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-    <!-- BEGIN STYLE CUSTOMIZER -->
-    <!-- END STYLE CUSTOMIZER -->
-    <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        Mangment users
+        Management users
     </h3>
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
                 <i class="fa fa-home"></i>
-                <a href="index.html">Home</a>
+                <a href="{{route('dashboard')}}">Dashboard</a>
                 <i class="fa fa-angle-right"></i>
             </li>
 
             <li>
-                <a href="#">Mangment users</a>
+                <a href="#">management users</a>
             </li>
         </ul>
-        <div class="page-toolbar">
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                    Actions <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu pull-right" role="menu">
-                    <li>
-                        <a href="#">Action</a>
-                    </li>
-                    <li>
-                        <a href="#">Another action</a>
-                    </li>
-                    <li>
-                        <a href="#">Something else here</a>
-                    </li>
-                    <li class="divider">
-                    </li>
-                    <li>
-                        <a href="#">Separated link</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
     </div>
     <!-- END PAGE HEADER-->
     <!-- BEGIN PAGE CONTENT-->
@@ -81,11 +31,9 @@
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
                         </a>
-                        <a href="#portlet-config" data-toggle="modal" class="config">
-                        </a>
                         <a href="javascript:;" class="reload">
                         </a>
-                        <a href="javascript:;" class="remove">
+
                         </a>
                     </div>
                 </div>
@@ -99,26 +47,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="btn-group pull-right">
-                                    <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li>
-                                            <a href="javascript:;">
-                                                Print </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                Save as PDF </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                Export to Excel </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
@@ -139,22 +68,22 @@
                             <th>
                                 Email
                             </th>
+                            @can('super_privileges')
                             <th>
-                                Edit
+                         Action
                             </th>
-                            <th>
-                                Delete
-                            </th>
+                            @endcan
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($users as $user)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{asset('files')}}/{{$user->image}}"><img width="40%" src="{{asset('files')}}/{{$user->image}}" alt=""> </a>
+                                <a target="_blank" href="{{asset('files')}}/{{$user->image}}"><img width="80px" src="{{asset('files')}}/{{$user->image}}" alt=""> </a>
                             </td>
                             <td>
-                                {{$user->name}}
+
+                                {{$user->role=='Student'?"$user->name($user->student_id)":"$user->name"}}
                             </td>
                             <td>
                                 {{$user->phone}}
@@ -166,12 +95,15 @@
                                {{$user->email}}
                             </td>
                             <td>
-                                <a class="" href="{{route( 'user.edit',['user'=>$user])}}">
+                                @can('super_privileges')
+
+                                <a class="btn btn-info" href="{{route('user.edit',['user'=>$user])}}">
                                     Edit </a>
-                            </td>
-                            <td>
-                                <a class="delete" href="javascript:;">
+
+
+                                <a class="btn btn-danger" href="{{route('user.destroy.get',['id'=>$user->id])}}">
                                     Delete </a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach
